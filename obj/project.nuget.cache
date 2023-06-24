@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dgSpecHash": "8VI0cUahiSrOhXDpeJCUFg6ZvJLMSqo+AbEZCfBy0SE/L2MHozSYWmDfoQS7Q8CSEnatiGzZIfvaV52FKc7tsw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\chad_\\source\\repos\\chudders1231\\SN_CureKnife\\CureBlade.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\chad_\\.nuget\\packages\\bepinex.analyzers\\1.0.8\\bepinex.analyzers.1.0.8.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\bepinex.assemblypublicizer.msbuild\\0.4.0\\bepinex.assemblypublicizer.msbuild.0.4.0.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\bepinex.baselib\\5.4.20\\bepinex.baselib.5.4.20.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\bepinex.core\\5.4.21\\bepinex.core.5.4.21.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\bepinex.plugininfoprops\\1.1.0\\bepinex.plugininfoprops.1.1.0.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\harmonyx\\2.7.0\\harmonyx.2.7.0.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.2\\microsoft.netframework.referenceassemblies.net472.1.0.2.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\mono.cecil\\0.11.4\\mono.cecil.0.11.4.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\monomod.runtimedetour\\21.12.13.1\\monomod.runtimedetour.21.12.13.1.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\monomod.utils\\21.12.13.1\\monomod.utils.21.12.13.1.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\polysharp\\1.13.1\\polysharp.1.13.1.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\subnautica.gamelibs\\71288.0.0-r.0\\subnautica.gamelibs.71288.0.0-r.0.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\subnautica.nautilus\\1.0.0-pre.12\\subnautica.nautilus.1.0.0-pre.12.nupkg.sha512",
+    "C:\\Users\\chad_\\.nuget\\packages\\unityengine.modules\\2019.4.36\\unityengine.modules.2019.4.36.nupkg.sha512"
+  ],
+  "logs": []
+}
