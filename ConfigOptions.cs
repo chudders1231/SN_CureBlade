@@ -1,8 +1,4 @@
 using Nautilus.Options;
-using BepInEx;
-using BepInEx.Configuration;
-using System.IO;
-using Nautilus.Handlers;
 
 namespace CureBlade
 {

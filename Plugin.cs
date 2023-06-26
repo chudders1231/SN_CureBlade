@@ -4,7 +4,6 @@ using HarmonyLib;
 using BepInEx;
 using CureBlade.Items.Equipment;
 using BepInEx.Configuration;
-using System.IO;
 
 namespace CureBlade;
 
@@ -32,7 +31,7 @@ public class Plugin : BaseUnityPlugin
         harmony.PatchAll();
         
         // Run additional functions prior to registering items
-        SetupBepinexConfigs();
+        //SetupBepinexConfigs();
 
         // Initialise custom prefabs
         InitializePrefabs();

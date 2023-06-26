@@ -28,7 +28,9 @@ namespace CureBlade.Patches
         [HarmonyPrefix]
         internal static void OnTakeDamagePrefix( CreatureDeath __instance, DamageInfo damageInfo)
         {
-            __instance.gameObject.GetComponent<CustomCreatureData>().lastDamageType = damageInfo.type;
+            var customCreatureData = __instance.gameObject.GetComponent<CustomCreatureData>();
+
+            customCreatureData.lastDamageType = damageInfo.type;
         }
 
         public static IEnumerator SpawnCuredFish( GameObject origFish, TechType curedFish)
