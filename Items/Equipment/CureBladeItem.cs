@@ -23,7 +23,7 @@ namespace CureBlade.Items.Equipment
             clonePrefab.ModifyPrefab += obj =>
             {
                 var heatBlade = obj.GetComponent<HeatBlade>();
-                var cureKnife = obj.AddComponent<CureKnifeBlade>().CopyComponent(heatBlade);
+                var cureKnife = obj.AddComponent<CureBladeComp>().CopyComponent(heatBlade);
 
                 Object.DestroyImmediate(heatBlade);
 
@@ -62,13 +62,13 @@ namespace CureBlade.Items.Equipment
     }
 }
 
-public class CureKnifeBlade : HeatBlade
+public class CureBladeComp : HeatBlade
 {
     public override string animToolName { get; } = TechType.HeatBlade.AsString(true);
 
     public override void OnToolUseAnim(GUIHand hand)
     {
-        var heatBladeDamage = 20;
+        var heatBladeDamage = 40;
 
         this.damage = heatBladeDamage * SetupConfigOptions.cureKnifeDamage.Value;
         base.OnToolUseAnim(hand);
