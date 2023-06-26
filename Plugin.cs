@@ -16,9 +16,9 @@ public class Plugin : BaseUnityPlugin
     public static ConfigEntry<float> cureKnifeDamage;
 
     // Plugin Setup
-    private const string myGUID = "com.chadlymasterson.cureknife";
+    private const string myGUID = "com.chadlymasterson.cureblade";
     private const string pluginName = "Cure Blade";
-    private const string versionString = "1.0.1";
+    private const string versionString = "1.0.2";
     public static readonly Harmony harmony = new Harmony(myGUID);
     public static ManualLogSource logger;
 
@@ -31,7 +31,7 @@ public class Plugin : BaseUnityPlugin
         harmony.PatchAll();
         
         // Run additional functions prior to registering items
-        //SetupBepinexConfigs();
+        SetupBepinexConfigs();
 
         // Initialise custom prefabs
         InitializePrefabs();
