@@ -70,12 +70,12 @@ public class CureBladeComp : HeatBlade
     {
         var heatBladeDamage = 40;
 
-        this.damage = heatBladeDamage * SetupConfigOptions.cureKnifeDamage.Value;
+        this.damage = heatBladeDamage * Plugin.cureKnifeDamage.Value;
         base.OnToolUseAnim(hand);
 
         GameObject hitObj = null;
         Vector3 hitPosition = default;
-        UWE.Utils.TraceFPSTargetPosition(Player.main.gameObject, attackDist * SetupConfigOptions.cureKnifeRange.Value, ref hitObj, ref hitPosition);
+        UWE.Utils.TraceFPSTargetPosition(Player.main.gameObject, attackDist * Plugin.cureKnifeRange.Value, ref hitObj, ref hitPosition);
 
     }
 }

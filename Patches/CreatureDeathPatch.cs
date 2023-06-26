@@ -23,6 +23,14 @@ namespace CureBlade.Patches
                 UWE.CoroutineHost.StartCoroutine(SpawnCuredFish(gameObject, curedData));
             }
         }
+
+        [HarmonyPatch(nameof(CreatureDeath.OnTakeDamage))]
+        [HarmonyPrefix]
+        internal static void OnTakeDamagePrefix( CreatureDeath __instance, DamageInfo damageInfo)
+        {
+            __instance.gameObject.GetComponent<CustomCreatureData>().lastDamageType = damageInfo.type;
+        }
+
         public static IEnumerator SpawnCuredFish( GameObject origFish, TechType curedFish)
         {
             TaskResult<GameObject> result = new TaskResult<GameObject>();
