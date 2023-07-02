@@ -17,7 +17,6 @@ namespace CureBlade.Patches
 
             TechType curedData = Utilities.curedCreatureList.GetOrDefault(CraftData.GetTechType(__instance.gameObject), TechType.None);
 
-            Plugin.logger.LogInfo($"Last Damage Type: {creatureData.lastDamageType}");
             if(curedData != TechType.None && creatureData.lastDamageType == Plugin.dehydrationDamageType)
             {
                 UWE.CoroutineHost.StartCoroutine(SpawnCuredFish(gameObject, curedData));

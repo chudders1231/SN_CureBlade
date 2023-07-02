@@ -4,6 +4,8 @@ using HarmonyLib;
 using BepInEx;
 using CureBlade.Items.Equipment;
 using BepInEx.Configuration;
+using System.Collections.Generic;
+using CureBlade.Items.Consumables;
 
 namespace CureBlade;
 
@@ -14,11 +16,12 @@ public class Plugin : BaseUnityPlugin
     // Config Stuff
     public static ConfigEntry<float> cureKnifeRange;
     public static ConfigEntry<float> cureKnifeDamage;
+    public static ConfigEntry<float> cureKnifeEmissionStrength;
 
     // Plugin Setup
     private const string myGUID = "com.chadlymasterson.cureblade";
     private const string pluginName = "Cure Blade";
-    private const string versionString = "1.0.2";
+    private const string versionString = "1.0.3";
     public static readonly Harmony harmony = new Harmony(myGUID);
     public static ManualLogSource logger;
 
@@ -61,11 +64,21 @@ public class Plugin : BaseUnityPlugin
             )
         );
 
+        cureKnifeEmissionStrength = Config.Bind("Cure Blade Options",
+            "Cure Knife Emission Strength",
+            1.0f,
+            new ConfigDescription(
+                "Changes the strength of the glow.",
+                new AcceptableValueRange<float>(0.1f, 2.0f)
+            )
+        );
+
         OptionsPanelHandler.RegisterModOptions(new CureBladeOptions());
     }
 
     private void InitializePrefabs()
     {
+        BrineBottleItem.Patch();
         CureBladeItem.Patch();
     }
 }

@@ -6,12 +6,13 @@ using Nautilus.Extensions;
 using UnityEngine;
 using Ingredient = CraftData.Ingredient;
 using CureBlade;
+using CureBlade.Items.Consumables;
 
 namespace CureBlade.Items.Equipment
 {
     public static class CureBladeItem
     {
-        public static PrefabInfo Info;
+        public static PrefabInfo Info { get; private set; }
 
         public static void Patch()
         {
@@ -26,13 +27,16 @@ namespace CureBlade.Items.Equipment
                 var cureKnife = obj.AddComponent<CureBladeComp>().CopyComponent(heatBlade);
 
                 Object.DestroyImmediate(heatBlade);
-
+                
                 cureKnife.damageType = Plugin.dehydrationDamageType;
                 cureKnife.vfxEventType = VFXEventTypes.diamondBlade;
 
                 var renderer = obj.GetComponentInChildren<MeshRenderer>(true);
                 obj.GetComponentsInChildren<MeshRenderer>(true).ForEach(x => x.material.mainTexture = Utilities.GetTexture("brine_blade"));
-                obj.GetComponentsInChildren<MeshRenderer>(true).ForEach(x => x.material.SetTexture("_Illum", Utilities.GetTexture("brine_blade_illum")));
+                obj.GetComponentsInChildren<MeshRenderer>(true).ForEach(x => {
+                    x.material.SetTexture("_Illum", Utilities.GetTexture("brine_blade_illum"));
+                });
+
             };
 
 
@@ -42,8 +46,7 @@ namespace CureBlade.Items.Equipment
                 Ingredients =
                 {
                     new Ingredient(TechType.Knife, 1),
-                    new Ingredient(TechType.Battery, 1),
-                    new Ingredient(TechType.Salt, 4)
+                    new Ingredient(BrineBottleItem.Info.TechType, 2)
                 }
             };
 
@@ -53,8 +56,8 @@ namespace CureBlade.Items.Equipment
             prefab.AddGadget(new EquipmentGadget(prefab, EquipmentType.Hand)).WithQuickSlotType(QuickSlotType.Selectable);
 
             prefab.SetRecipe(recipe)
-                .WithFabricatorType(CraftTree.Type.Fabricator)
-                .WithStepsToFabricatorTab("Personal", "Tools")
+                .WithFabricatorType(CraftTree.Type.Workbench)
+                .WithStepsToFabricatorTab("Tools")
                 .WithCraftingTime(5.5f);
 
             prefab.Register();
@@ -65,6 +68,7 @@ namespace CureBlade.Items.Equipment
 public class CureBladeComp : HeatBlade
 {
     public override string animToolName { get; } = TechType.HeatBlade.AsString(true);
+    public float emissionStrength;
 
     public override void OnToolUseAnim(GUIHand hand)
     {
@@ -77,5 +81,20 @@ public class CureBladeComp : HeatBlade
         Vector3 hitPosition = default;
         UWE.Utils.TraceFPSTargetPosition(Player.main.gameObject, attackDist * Plugin.cureKnifeRange.Value, ref hitObj, ref hitPosition);
 
+    }
+    public override void OnDraw(Player p)
+    {
+        base.OnDraw(p);
+
+        Refresh();
+    }
+
+    public void Refresh()
+    {
+        emissionStrength = Plugin.cureKnifeEmissionStrength.Value;
+
+        this.GetComponentsInChildren<MeshRenderer>(true).ForEach(x => {
+            x.material.SetColor("_GlowColor", Color.white * emissionStrength);
+        });
     }
 }
