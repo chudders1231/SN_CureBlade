@@ -1,11 +1,12 @@
 ﻿using Nautilus.Handlers;
+using Nautilus.Utility.ModMessages;
 using BepInEx.Logging;
 using HarmonyLib;
 using BepInEx;
 using CureBlade.Items.Equipment;
 using BepInEx.Configuration;
-using System.Collections.Generic;
 using CureBlade.Items.Consumables;
+
 
 namespace CureBlade;
 
@@ -21,7 +22,7 @@ public class Plugin : BaseUnityPlugin
     // Plugin Setup
     private const string myGUID = "com.chadlymasterson.cureblade";
     private const string pluginName = "Cure Blade";
-    private const string versionString = "1.0.3";
+    private const string versionString = "1.0.4";
     public static readonly Harmony harmony = new Harmony(myGUID);
     public static ManualLogSource logger;
 
@@ -30,19 +31,27 @@ public class Plugin : BaseUnityPlugin
 
     private void Awake()
     {
+        // Register project logging
+        logger = Logger;
+
         // Patch in harmony changes
         harmony.PatchAll();
-        
+
         // Run additional functions prior to registering items
         SetupBepinexConfigs();
 
         // Initialise custom prefabs
         InitializePrefabs();
 
-        // Register project logging
-        logger = Logger;
-
         logger.LogInfo($"Plugin {myGUID} is loaded!");
+    }
+
+
+    private void Start()
+    {
+        ModMessageSystem.Send(new ModMessage("com.chadlymasterson.autosortlockers", "AddCategory", new object[] { "Brine Blade" }));
+        ModMessageSystem.Send(new ModMessage("com.chadlymasterson.autosortlockers", "AddEntry", new object[] { "Brine Blade", "BrineBlade" }));
+        ModMessageSystem.Send(new ModMessage("com.chadlymasterson.autosortlockers", "AddEntry", new object[] { "Brine Blade", "ConcentratedBrine" }));
     }
 
     private void SetupBepinexConfigs()

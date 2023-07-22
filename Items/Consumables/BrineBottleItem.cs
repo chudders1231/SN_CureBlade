@@ -13,7 +13,7 @@ namespace CureBlade.Items.Consumables
         public static PrefabInfo Info { get; private set; }
         public static void Patch()
         {
-            Info = Utilities.CreatePrefabInfo("BrineSolution", "Concentrated Brine", "Usually used in curing meat, however using this high a concentration could potentially poison the consumer!", Utilities.GetSprite("brine_bottle_sprite"), 1, 1);
+            Info = Utilities.CreatePrefabInfo("ConcentratedBrine", "Concentrated Brine", "Usually used in curing meat, however using this high a concentration could potentially poison the consumer!", Utilities.GetSprite("brine_bottle_sprite"), 1, 1);
 
             var prefab = new CustomPrefab(Info);
 

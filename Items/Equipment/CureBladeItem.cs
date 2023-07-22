@@ -16,7 +16,7 @@ namespace CureBlade.Items.Equipment
 
         public static void Patch()
         {
-            Info = Utilities.CreatePrefabInfo("CureBlade", "Cure Blade", "Cures small organisms by converting body water content into brine.", Utilities.GetSprite("brine_blade_sprite"), 1, 1);
+            Info = Utilities.CreatePrefabInfo("BrineBlade", "Brine Blade", "Cures small organisms by converting body water content into brine.", Utilities.GetSprite("brine_blade_sprite"), 1, 1);
 
             var prefab = new CustomPrefab(Info);
 
@@ -46,6 +46,7 @@ namespace CureBlade.Items.Equipment
                 Ingredients =
                 {
                     new Ingredient(TechType.Knife, 1),
+                    new Ingredient(TechType.Battery, 1),
                     new Ingredient(BrineBottleItem.Info.TechType, 2)
                 }
             };
