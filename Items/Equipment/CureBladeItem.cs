@@ -7,16 +7,16 @@ using UnityEngine;
 using Ingredient = CraftData.Ingredient;
 using CureBlade;
 using CureBlade.Items.Consumables;
+using System.Net;
 
 namespace CureBlade.Items.Equipment
 {
     public static class CureBladeItem
     {
-        public static PrefabInfo Info { get; private set; }
+        public static PrefabInfo Info { get; private set; } = Utilities.CreatePrefabInfo("BrineBlade", "Brine Blade", "Cures small organisms by converting body water content into brine.", Utilities.GetSprite("brine_blade_sprite"), 1, 1);
 
         public static void Patch()
         {
-            Info = Utilities.CreatePrefabInfo("BrineBlade", "Brine Blade", "Cures small organisms by converting body water content into brine.", Utilities.GetSprite("brine_blade_sprite"), 1, 1);
 
             var prefab = new CustomPrefab(Info);
 
@@ -95,6 +95,8 @@ public class CureBladeComp : HeatBlade
         emissionStrength = Plugin.cureKnifeEmissionStrength.Value;
 
         this.GetComponentsInChildren<MeshRenderer>(true).ForEach(x => {
+            if (x.material.GetColor("_GlowColor") == Color.white * emissionStrength) return;
+                
             x.material.SetColor("_GlowColor", Color.white * emissionStrength);
         });
     }

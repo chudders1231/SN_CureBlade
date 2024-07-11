@@ -1,17 +1,18 @@
 ﻿using Nautilus.Handlers;
-using Nautilus.Utility.ModMessages;
 using BepInEx.Logging;
 using HarmonyLib;
 using BepInEx;
 using CureBlade.Items.Equipment;
 using BepInEx.Configuration;
 using CureBlade.Items.Consumables;
-
+using UnityEngine;
+using static BepInEx.BepInDependency;
 
 namespace CureBlade;
 
 [BepInPlugin(myGUID, pluginName, versionString)]
 [BepInDependency("com.snmodding.nautilus")]
+[BepInDependency("com.chadlymasterson.autosortlockers", DependencyFlags.SoftDependency)]
 public class Plugin : BaseUnityPlugin
 {
     // Config Stuff
@@ -49,9 +50,9 @@ public class Plugin : BaseUnityPlugin
 
     private void Start()
     {
-        ModMessageSystem.Send(new ModMessage("com.chadlymasterson.autosortlockers", "AddCategory", new object[] { "Brine Blade" }));
-        ModMessageSystem.Send(new ModMessage("com.chadlymasterson.autosortlockers", "AddEntry", new object[] { "Brine Blade", "BrineBlade" }));
-        ModMessageSystem.Send(new ModMessage("com.chadlymasterson.autosortlockers", "AddEntry", new object[] { "Brine Blade", "ConcentratedBrine" }));
+        SendMessage("AutosortLockersAddCategory", new[] { "Brine Blade" }, SendMessageOptions.DontRequireReceiver);
+        SendMessage("AutosortLockersAddEntry", new[] { "Brine Blade", "BrineBlade" }, SendMessageOptions.DontRequireReceiver);
+        SendMessage("AutosortLockersAddEntry", new[] { "Brine Blade", "ConcentratedBrine" }, SendMessageOptions.DontRequireReceiver);
     }
 
     private void SetupBepinexConfigs()
